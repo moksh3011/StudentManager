@@ -8,6 +8,7 @@ public class Main {
         Scanner fetch = new Scanner(System.in);
         StudentManager manager = new StudentManager();
 
+
         while (true) {
             System.out.println("\n------Students Marks Manager-----");
             System.out.println("1. Add Student ");
@@ -36,8 +37,11 @@ public class Main {
                     manager.viewStudentRecords();
                 }
                 break;
+
                 case 3: {
-                    while (!manager.studentList.isEmpty()) {
+                    boolean backtomain = false;
+                    while (!backtomain) {
+
                         System.out.println("1. Name");
                         System.out.println("2. Marks");
                         System.out.println("3. Return to main menu");
@@ -45,8 +49,12 @@ public class Main {
                         int choose = fetch.nextInt();
 
                         if (choose == 3) {
+                            backtomain = true;
                             System.out.println("Returning to main menu");
                             break;
+                        }
+                        if(manager.studentList.isEmpty()){
+                            System.out.println("No records found!");
                         }
 
 

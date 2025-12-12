@@ -7,17 +7,21 @@ public class StudentManager {
     ArrayList<Student> studentList = new ArrayList<>();
     RecordManager record = new RecordManager();
 
-    public void addStudents(Student student) {
-     studentList.add(student);
+
+    public StudentManager(){
+        studentList = record.loadFromFile();
+    }
+    public void addStudents(Student s) {
+     studentList.add(s);
      System.out.println("Record added successfully!!");
-     record.addtoFile(student.getName(),
-             student.getRollNo(),
-             student.getMarks());
+     record.addtoFile(s);
  }
 
 
 
     public void viewStudentRecords(){
+
+
         record.readfromFile();
 
     }
@@ -27,6 +31,7 @@ public class StudentManager {
         for(Student s: studentList){
             if(s.getRollNo() == roll) {
                 s.setName(name);
+                record.updateFile(studentList);
                 return;
             }
         }System.out.println("record not found!");
@@ -36,6 +41,7 @@ public class StudentManager {
         for (Student s : studentList) {
             if (s.getRollNo() == roll) {
                 s.setMarks(marks);
+                record.updateFile(studentList);
                 return;
             }
             System.out.println("record not found!");
@@ -46,6 +52,7 @@ public class StudentManager {
         for (Student s : studentList) {
             if (s.getRollNo() == roll) {
                 studentList.remove(s);
+                record.updateFile(studentList);
                 return;
             }
         }
